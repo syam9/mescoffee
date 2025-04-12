@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Device Redirect</title>
+  <script>
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+    if (/android/i.test(userAgent)) {
+      // Kalau Android
+      window.location.href = "https://www.google.com";
+    } else if (/iPhone/i.test(userAgent)) {
+      // Kalau iPhone
+      window.location.href = "https://www.facebook.com";
+    } else if (/iPad/i.test(userAgent)) {
+      // iPad detected – tak buat apa-apa, stay je
+      console.log("User pakai iPad.");
+    } else {
+      // Desktop browser atau lain-lain – tak redirect
+      console.log("User pakai desktop atau device lain.");
+    }
+  </script>
+</head>
+<body>
+  <h1>Welcome to My Website</h1>
+  <p>Kalau tak redirect, maksudnya kau pakai iPad atau desktop browser.</p>
+</body>
+</html>
+

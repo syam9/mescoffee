@@ -3,27 +3,77 @@
 <head>
   <meta charset="UTF-8">
   <title>Device Redirect</title>
-  <script>
-    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-
-    if (/android/i.test(userAgent)) {
-      // Kalau Android
-      window.location.href = "https://www.google.com";
-    } else if (/iPhone/i.test(userAgent)) {
-      // Kalau iPhone
-      window.location.href = "https://www.facebook.com";
-    } else if (/iPad/i.test(userAgent)) {
-      // iPad detected – tak buat apa-apa, stay je
-      console.log("User pakai iPad.");
-    } else {
-      // Desktop browser atau lain-lain – tak redirect
-      console.log("User pakai desktop atau device lain.");
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      text-align: center;
     }
-  </script>
+    .hidden {
+      display: none;
+    }
+  </style>
 </head>
 <body>
-  <h1>Welcome to My Website</h1>
-  <p>Kalau tak redirect, maksudnya kau pakai iPad atau desktop browser.</p>
+  <div id="available" class="hidden">
+    <h1>Welcome to My Website</h1>
+    <p>Redirecting...</p>
+  </div>
+
+  <div id="not-available" class="hidden">
+    <h1>Sorry!</h1>
+    <p>This website is not available on iPhone, iPad, or Desktop. Please use an Android device.</p>
+  </div>
+
+  <script>
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    const isAndroid = /android/i.test(userAgent);
+    const isIphone = /iPhone/i.test(userAgent);
+    const isIpad = /iPad/i.test(userAgent);
+
+    if (isAndroid) {
+      // Redirect Android
+      document.getElementById("available").classList.remove("hidden");
+      window.location.href = "https://play.google.com/store/apps/details?id=com.syamp.mescoffee&#38;pcampaignid=web_share";
+    } else if (isIphone || isIpad) {
+      // Tunjuk mesej tak available untuk iPhone/iPad
+      document.getElementById("not-available").classList.remove("hidden");
+    } else {
+      // Untuk desktop atau device lain
+      document.getElementById("not-available").classList.remove("hidden");
+    }
+  </script>
 </body>
 </html>
 
+
+
+<!-- <!DOCTYPE html> -->
+<!-- <html lang="en"> -->
+<!-- <head> -->
+<!--   <meta charset="UTF&#45;8"> -->
+<!--   <title>Device Redirect</title> -->
+<!--   <script> -->
+<!--     const userAgent = navigator.userAgent || navigator.vendor || window.opera; -->
+<!--  -->
+<!--     if (/android/i.test(userAgent)) { -->
+<!--       // Kalau Android -->
+<!--       window.location.href = "https://play.google.com/store/apps/details?id=com.syamp.mescoffee&#38;pcampaignid=web_share"; -->
+<!--     } else if (/iPhone/i.test(userAgent)) { -->
+<!--       // Kalau iPhone -->
+<!--       window.location.href = "https://www.google.com"; -->
+<!--     } else if (/iPad/i.test(userAgent)) { -->
+<!--       // iPad detected – tak buat apa&#45;apa, stay je -->
+<!--       console.log("User pakai iPad."); -->
+<!--     } else { -->
+<!--       // Desktop browser atau lain&#45;lain – tak redirect -->
+<!--       console.log("User pakai desktop atau device lain."); -->
+<!--     } -->
+<!--   </script> -->
+<!-- </head> -->
+<!-- <body> -->
+<!--   <h1>Welcome to My Website</h1> -->
+<!--   <p>Kalau tak redirect, maksudnya kau pakai iPad atau desktop browser.</p> -->
+<!-- </body> -->
+<!-- </html> -->
+<!--  -->
